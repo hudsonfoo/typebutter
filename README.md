@@ -20,5 +20,5 @@ __Will TypeButter slow my site down?__
 That depends. If you have 200,000 words on your page and TypeButter is manipulating every letter… uhh yeah. If you have a normal site or blog, you should barely notice the difference.
 
 __Hasn’t this already been done with optimizeLegibility?__
-
+ 
 Nope. The optimizeLegibility declaration has limited support even among modern browsers. It also has plenty of other problems.
