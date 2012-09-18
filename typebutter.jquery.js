@@ -1,5 +1,5 @@
 /* 
-* TYPEBUTTER v1.0
+* TYPEBUTTER v1.1
 * Developed by David Hudson  (@_davidhudson)
 * Website design and default font kerning by Joel Richardson (@richardson_joel)
 * This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License: http://creativecommons.org/licenses/by-sa/3.0/
