@@ -1,5 +1,5 @@
 /* 
-* TYPEBUTTER v1.1
+* TYPEBUTTER v1.2
 * Developed by David Hudson  (@_davidhudson)
 * Website design and default font kerning by Joel Richardson (@richardson_joel)
 * This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License: http://creativecommons.org/licenses/by-sa/3.0/
@@ -19,9 +19,11 @@
 	
 	jQuery.fn.typeButter = function( options ) {
 		// Create some defaults, extending them with any options that were provided
-		var settings = jQuery.extend( {
-			'default-spacing'	: '0em' // Set default spacing to 0 if the user hasn't set it at all
-		}, options);
+		var that = this,
+			settings = jQuery.extend( {
+				'default-spacing'	: '0em', // Set default spacing to 0 if the user hasn't set it at all
+				'elementName'		: 'kern' // Default element name. This name doesn't currently exist in HTML5 so if you want to use something that does, change away.
+			}, options);
 		
 		recurseThroughNodes = function (currentNode, copyNode) {
 			jQuery(copyNode).contents().each(function () {
@@ -52,7 +54,7 @@
 								if (typeButterLibrary[fontFamily][fontWeight + '-' + fontStyle][thisNodeText.substring(i, i+2)] != undefined) {
 									var kerning = typeButterLibrary[fontFamily][fontWeight + '-' + fontStyle][thisNodeText.substring(i, i+2)];
 									kerning = (parseFloat(kerning) + parseFloat(settings['default-spacing'])) + 'em'; // Add default spacing to kern
-									thisNodeTextCopy.push('<kern style="letter-spacing:' + kerning + '">' + thisNodeText.substring(i, i+1) + '</kern>');
+									thisNodeTextCopy.push('<' + settings.elementName + ' style="letter-spacing:' + kerning + '">' + thisNodeText.substring(i, i+1) + '</' + settings.elementName + '>');
 								} else {
 									thisNodeTextCopy.push(thisNodeText.substring(i, i+1));
 								}
@@ -69,12 +71,17 @@
 			});
 		};
 		
-		return this.each(function() {
+		return that.each(function(index, node) {
 			var el = jQuery(this),
 				clone = el.clone();
 			el.empty();			
 			el.css('letter-spacing', settings['default-spacing']);
 			recurseThroughNodes(el, clone);
-		}); 
+			
+			// If this was the last element that needed kerning, call any callback the user may have specified in the options.
+			if (that.length == (index+1) && typeof settings.callback == "function") {
+				settings.callback();
+			}
+		});
 	};
 })( jQuery ); 
