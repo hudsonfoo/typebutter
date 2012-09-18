@@ -27,7 +27,7 @@
 			jQuery(copyNode).contents().each(function () {
 				var nextCopy,
 				thisNode = jQuery(this),
-				thisNodeText = thisNode.text(),
+				thisNodeText = (currentNode.css('text-transform').toLowerCase() == 'uppercase') ? thisNode.text().toUpperCase() : thisNode.text(),
 				thisNodeTextCopy = [''];
 
 				if (this.nodeType == 3) {// If this is a text node move it to the original element
