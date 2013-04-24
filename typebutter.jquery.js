@@ -1,5 +1,5 @@
 /* 
-* TYPEBUTTER v1.2
+* TYPEBUTTER v1.3
 * Developed by David Hudson  (@_davidhudson)
 * Website design and default font kerning by Joel Richardson (@richardson_joel)
 * This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License: http://creativecommons.org/licenses/by-sa/3.0/
@@ -28,19 +28,19 @@
 		recurseThroughNodes = function (currentNode, copyNode) {
 			jQuery(copyNode).contents().each(function () {
 				var nextCopy,
-				thisNode = jQuery(this),
-				thisNodeText = (currentNode.css('text-transform').toLowerCase() == 'uppercase') ? thisNode.text().toUpperCase() : thisNode.text(),
-				thisNodeTextCopy = [''];
+					thisNode = jQuery(this),
+					thisNodeText = (currentNode.css('text-transform').toLowerCase() == 'uppercase') ? thisNode.text().toUpperCase() : thisNode.text(),
+					thisNodeTextCopy = [''];
 
 				if (this.nodeType == 3) {// If this is a text node move it to the original element
 					// Get font weight and style information
-					var fontWeight 	= currentNode.css('fontWeight').toLowerCase(),
-						fontStyle 		= currentNode.css('fontStyle').toLowerCase(),
-						fontFamily 		= currentNode.css('font-family').toLowerCase();
+					var fontWeight 	= String(currentNode.css('fontWeight')).toLowerCase(), // Could be a number so we force it to return a string
+						fontStyle 	= currentNode.css('fontStyle').toLowerCase(),
+						fontFamily 	= currentNode.css('font-family').toLowerCase();
 
 					// Set known font weights and styles
 					var weightArray	= new Array('normal', 'bold', 'bolder', 'lighter', '100', '200', '300', '400', '500', '600', '700', '800', '900'),
-						styleArray		= new Array('normal', 'italic', 'oblique');
+						styleArray	= new Array('normal', 'italic', 'oblique');
 					
 					// Check for and fix expected and unexpected issues with font family, weight and style
 					fontFamily = fontFamily.split(','); // Split multiple font familes and assume the top family is the one the browser chose to use (maybe use getComputedStyle to resolve?)
@@ -52,8 +52,10 @@
 					if (typeButterLibrary[fontFamily] != undefined && typeButterLibrary[fontFamily][fontWeight + '-' + fontStyle] != undefined) { // If the library exists
 							for (i = 0; i < thisNodeText.length; i++) {// Search text for error prone text and wrap text with kerning element and modify kerning
 								if (typeButterLibrary[fontFamily][fontWeight + '-' + fontStyle][thisNodeText.substring(i, i+2)] != undefined) {
-									var kerning = typeButterLibrary[fontFamily][fontWeight + '-' + fontStyle][thisNodeText.substring(i, i+2)];
-									kerning = (parseFloat(kerning) + parseFloat(settings['default-spacing'])) + 'em'; // Add default spacing to kern
+									var kerning = typeButterLibrary[fontFamily][fontWeight + '-' + fontStyle][thisNodeText.substring(i, i+2)],
+										letterSpacing = parseInt(currentNode.css('letter-spacing'));
+
+									kerning = ((letterSpacing * 0.064) + parseFloat(kerning) + parseFloat(settings['default-spacing'])) + 'em'; // Add default spacing to kern
 									thisNodeTextCopy.push('<' + settings.elementName + ' style="letter-spacing:' + kerning + '">' + thisNodeText.substring(i, i+1) + '</' + settings.elementName + '>');
 								} else {
 									thisNodeTextCopy.push(thisNodeText.substring(i, i+1));
