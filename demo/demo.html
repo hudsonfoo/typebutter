@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>TypeButter Demo</title>
+		<style>
+			body { font-size: 1.25em; }
+			#wrapper { width: 50em; max-width:90%; margin:0 auto; }
+			.arial { font-family: arial; }
+			.georgia { font-family: georgia; }
+			.helvetica { font-family: helvetica; }
+			.times { font-family: 'times new roman'; }
+			.verdana { font-family: verdana; }
+		</style>
+    </head>
+    <body>
+		<div id="wrapper">
+			<h1 class='georgia'>Welcome to TypeButter</h1>
+			<p class='arial'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum egestas pulvinar. Suspendisse euismod tempus tincidunt. Morbi ut libero fermentum diam laoreet scelerisque et quis mi. Duis interdum mollis dignissim. Quisque accumsan turpis porttitor risus auctor vitae pulvinar risus vulputate. Suspendisse orci arcu, laoreet varius porttitor ut, pharetra et ipsum. Maecenas odio urna, dignissim id lobortis nec, dapibus eget mauris. Pellentesque lorem orci, posuere ac consectetur sed, imperdiet ac elit.
+			<p class='georgia'>Aliquam erat volutpat. Ut scelerisque mi viverra sem pulvinar et auctor nibh tristique. Aliquam nec est velit. Aenean tincidunt mollis mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras rhoncus mauris ac elit imperdiet quis pulvinar mi auctor. Maecenas nec sapien non turpis elementum tempus.
+			<p class='times'>Nulla facilisi. Suspendisse sit amet molestie tellus. Fusce mollis sollicitudin nisi ac lacinia. Ut nibh velit, venenatis ut dictum eu, vestibulum sit amet lectus. Vivamus vel vehicula risus. Phasellus ipsum turpis, malesuada quis tristique eget, rutrum quis risus. Mauris nibh neque, bibendum in lobortis sit amet, placerat et velit. Morbi sed tincidunt eros. Morbi nisi nulla, placerat eu dapibus et, venenatis vitae orci. Phasellus bibendum, leo ac mollis venenatis, lorem quam sodales leo, ut rhoncus lacus ligula ut nibh. In euismod consectetur elementum. Vivamus semper augue eros. Maecenas aliquet facilisis lectus sit amet iaculis. Suspendisse sit amet nunc dolor, id varius nibh.
+			<p class='verdana'>Quisque sed lacus vitae eros congue dictum ut vitae felis. Nam ut rutrum quam. Nulla tempor porta viverra. Nam suscipit tempor tincidunt. Nullam tellus velit, porta eu gravida et, viverra eu quam. Quisque nibh nulla, sagittis vel sollicitudin ac, vehicula sit amet turpis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec rutrum eros. Curabitur sed erat nec orci malesuada mattis. Duis bibendum rhoncus auctor.
+		</div>
+		
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="../typebutter.jquery.js"></script>
+        <script src="../typebutter.arial.js"></script>
+        <script src="../typebutter.georgia.js"></script>
+        <script src="../typebutter.helvetica.js"></script>
+        <script src="../typebutter.times.js"></script>
+        <script src="../typebutter.verdana.js"></script>
+		<script>
+			jQuery('body').typeButter({
+				'default-spacing' : '0em'
+			});
+		</script>
+    </body>
+</html>
